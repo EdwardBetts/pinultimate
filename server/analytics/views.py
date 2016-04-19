@@ -80,9 +80,9 @@ def user_analytics_page(request):
     avg_seconds_mobile = PhoneUser.objects.raw('select id, avg(total_seconds_spent) as avg from analytics_phoneuser')[0].avg
     avg_min_mobile = "{0:.2f}".format(float(avg_seconds_mobile)/60)
     num_return_users_web = WebUser.objects.filter(total_visits__gt=1).count()
-    ret_rate_web = "{0:.2f}%".format((float(num_return_users_web)/num_users_web)*100)
+    ret_rate_web = "{0:.2%}".format((float(num_return_users_web)/num_users_web))
     num_return_users_mobile = PhoneUser.objects.filter(total_visits__gt=1).count()
-    ret_rate_mobile = "{0:.2f}%".format((float(num_return_users_mobile)/num_users_mobile)*100)
+    ret_rate_mobile = "{0:.2%}".format((float(num_return_users_mobile)/num_users_mobile))
 
     data = {
         'total_num_users_web' : num_users_web,
